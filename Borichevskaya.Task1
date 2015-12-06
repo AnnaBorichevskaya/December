@@ -1,0 +1,78 @@
+#include <iostream>
+using namespace std;
+
+void EnterArray( int [], int );
+void Display( int [], int );
+int EnterDemention( int );
+void Swap( int &, int &);
+void Sort_LastNumber( int [], int );
+
+int main()
+{
+	const int N = 20;
+	int a[N] = { 0 };
+	int n = EnterDemention(N);
+
+	EnterArray(a, n);
+	system("cls");
+
+	cout << "Sourse array : ";
+	Display(a, n);
+	cout << endl;
+
+	Sort_LastNumber(a, n);
+	cout << " Your change array : ";
+	Display(a, n);
+	cout << endl;
+
+	system("pause");
+	return 0;
+}
+
+void EnterArray(int a[], int n)
+{
+	cout << "Enter array elements: " << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "[" << (i + 1) << "] = ";
+		cin >> a[i];
+	}
+}
+
+void Display(int a[], int n)
+{
+	for (int i = 0; i < n; i++)
+		cout << a[i] << ", ";
+}
+
+int EnterDemention(int n)
+{
+	int d;
+	while (true)
+	{
+		cout << "Enter n ( amount ) <= " << n << "   ";
+		cin >> d;
+		if (d > 0 && d <= n) return d;
+		cout << "Error!" << endl;
+	}
+}
+
+void Swap(int &a, int &b)
+{
+	int term = 0;
+	term = a;
+	a = b;
+	b = term;
+}
+
+void Sort_LastNumber(int a[], int n)
+{
+	for (int i = 1; i < n; i++)
+	{
+		for (int j = 0; j < n - 1; j++)
+		{
+			if ((a[j] % 10) > (a[j + 1] % 10))
+				Swap(a[j], a[j + 1]);
+		}
+	}
+}
