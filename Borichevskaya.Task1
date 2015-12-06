@@ -71,7 +71,7 @@ void Sort_LastNumber(int a[], int n)
 	{
 		for (int j = 0; j < n - 1; j++)
 		{
-			if ((a[j] % 10) > (a[j + 1] % 10))
+			if (abs(a[j] % 10) > abs(a[j + 1] % 10))
 				Swap(a[j], a[j + 1]);
 		}
 	}
