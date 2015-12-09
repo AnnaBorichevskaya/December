@@ -1,0 +1,80 @@
+#include <iostream>
+using namespace std;
+
+void EnterArray(int[], int);
+void Display(int[], int);
+void Swap(int &, int &);
+void BubbleSort_NumberOfDigits(int[], int);
+int EnterDemention(int);
+
+int main()
+{
+	const int N = 20;
+	int a[N] = { 0 };
+	int n = EnterDemention(N);
+
+	EnterArray(a, n);
+	system("cls");
+
+	cout << "Sourse array : ";
+	Display(a, n);
+	cout << endl;
+
+	BubbleSort_NumberOfDigits(a, n);
+	system("pause");
+	system("cls");
+	return 0;
+}
+
+
+void EnterArray(int a[], int n)
+{
+	cout << "Enter array elements: " << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "[" << (i + 1) << "] = ";
+		cin >> a[i];
+	}
+}
+
+void Display(int a[], int n)
+{
+	for (int i = 0; i < n; i++)
+		cout << a[i] << ", ";
+}
+
+void BubbleSort_NumberOfDigits(int a[], int n)
+{
+	int f = 1, lmax = 1;
+	int max = a[0];
+	for (int i = 0; i < n; i++)
+	{
+		int prev = a[i], next = a[i + 1];
+		if (prev == next)
+			f++;
+		else
+		{
+			if (f > lmax)
+			{
+				lmax = f;
+				max = prev;
+			}
+			f = 1;
+		}
+		prev = next;
+	}
+	if (lmax > 1) cout << "Max length sequence in array is " << lmax << endl << "Number in this sequence is " << max << endl;
+	else cout << "There is sequence of zero! ";
+}
+
+int EnterDemention(int n)
+{
+	int d;
+	while (true)
+	{
+		cout << "Enter n ( amount ) <= " << n << "   ";
+		cin >> d;
+		if (d > 0 && d <= n) return d;
+		cout << "Error!";
+	}
+}
