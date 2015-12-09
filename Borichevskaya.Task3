@@ -1,0 +1,115 @@
+#include <iostream>
+using namespace std;
+
+void EnterArray(int [], int );
+void Display(int[], int);
+void Swap(int &, int &);
+void Transfer_BinarySystem(int[], int);
+void BubbleSort_TheNumberOfDigits(int[], int);
+int EnterDemention(int);
+
+int main()
+{
+	const int N = 20;
+	int a[N] = { 0 };
+	int n = EnterDemention(N);
+
+	EnterArray(a, n);
+	system("cls");
+
+	cout << "Sourse array : ";
+	Display(a, n);
+	cout << endl;
+
+	cout << "Your array in  binary system: " << endl;
+	Transfer_BinarySystem(a, n);
+	Display(a, n);
+	cout << endl;
+
+	BubbleSort_TheNumberOfDigits(a, n);
+	cout << "Sorted Array in binary system: " << endl;
+	Display(a, n);
+
+	system("pause");
+	return 0;
+}
+
+void EnterArray(int a[], int n)
+{
+	cout << "Enter array elements: " << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "[" << (i + 1) << "] = ";
+		cin >> a[i];
+	}
+}
+
+void Display(int a[], int n)
+{
+	for (int i = 0; i < n; i++)
+		cout << a[i] << ", ";
+}
+
+void Swap(int &a, int &b)
+{
+	int term = 0;
+	term = a;
+	a = b;
+	b = term;
+}
+
+void BubbleSort_TheNumberOfDigits(int a[], int n)
+{
+
+	for (int i = 0; i < n; i++)
+	{
+		int z = 0, q = 0;
+		int m = a[i];
+		while (m)
+		{
+			if (m % 10 == 1)
+				z++;
+			m = m / 10;
+		}
+		for (int j = i + 1; j < n; j++)
+		{
+			int h = a[j];
+			while (h)
+			{
+				if (h % 10 == 1)
+					q++;
+				h = h / 10;
+			}
+			if (q > z) Swap(a[j], a[j - 1]);
+			if (a[i] != a[j]) break;
+		}
+	}
+}
+
+int EnterDemention(int n)
+{
+	int d;
+	while (true)
+	{
+		cout << "Enter n ( amount ) <= " << n << "   ";
+		cin >> d;
+		if (d > 0 && d <= n) return d;
+		cout << "Error!";
+	}
+}
+
+void Transfer_BinarySystem(int a[], int n)
+{
+	int l, r;
+	for (int i = 0; i <= n - 1; i++)
+	{
+		l = 0, r = 1;
+		while (a[i])
+		{
+			l += (a[i] % 2)*r;
+			a[i] = a[i] / 2;
+			r = r * 10;
+		}
+		a[i] = l;
+	}
+}
